@@ -1,7 +1,10 @@
-import { StyleSheet, Text, 
+import { StyleSheet, Text, ImageBackground,
     View, TouchableOpacity, TextInput, KeyboardAvoidingView, 
+    Keyboard,TouchableWithoutFeedback, 
     Platform } from "react-native";
 import React, { useState } from "react";
+
+const imageBackground = require('../../assets/images/Photo-image.jpg');
 
 const initialState = {
     email: "",
@@ -11,6 +14,10 @@ const initialState = {
 const LoginScreen = () => {
     const [state, setState] = useState(initialState);
 
+    const keyboardHide = () => {
+        Keyboard.dismiss();
+    };
+
     const submitForm = () => {
     console.log(state);
     setState(initialState);
@@ -19,7 +26,10 @@ const LoginScreen = () => {
     const passwordShow =()=> alert(`Your password is: ${state.password}`);
 
     return (
-        <KeyboardAvoidingView 
+        <TouchableWithoutFeedback onPress={keyboardHide}>
+            <View style={styles.container}>
+                <ImageBackground source={imageBackground} style={styles.imageBackground} >
+                    <KeyboardAvoidingView 
             behavior={Platform.OS === "ios" ? "padding" : "height"} 
             // style={ styles.container } 
         >
@@ -53,11 +63,23 @@ const LoginScreen = () => {
                     <Text style={ styles.loginLinkText }>Don't have an account? Register</Text>
                 </TouchableOpacity> 
                 </View>
-        </KeyboardAvoidingView>
+                    </KeyboardAvoidingView>
+                </ImageBackground>
+            </View>
+        </TouchableWithoutFeedback>
     )
 };
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: "#fff",
+    }, 
+    imageBackground: {
+        flex: 1,
+        resizeMode: "cover",
+        justifyContent: "flex-end",
+    },
     form: {
         alignItems: "center",
         width: 360,

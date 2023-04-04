@@ -1,8 +1,10 @@
 import { StyleSheet, Text, ImageBackground,
     View, TouchableOpacity, TextInput, KeyboardAvoidingView, 
-    Keyboard,TouchableWithoutFeedback,
+    Keyboard,TouchableWithoutFeedback, 
     Platform } from "react-native";
 import React, { useState } from "react";
+
+const imageBackground = require('../../assets/images/Photo-image.jpg');
 
 const buttonImg = require('../../assets/images/add.png');
 
@@ -31,7 +33,9 @@ const RegistrationScreen = () => {
 
     return (
         <TouchableWithoutFeedback onPress={keyboardHide}>
-        <KeyboardAvoidingView 
+            <View style={styles.container}>
+                <ImageBackground source={imageBackground} style={styles.imageBackground} >
+                    <KeyboardAvoidingView 
             behavior={Platform.OS == "ios" ? "padding" : "height"} 
             // style={ styles.container } 
             >
@@ -96,12 +100,23 @@ const RegistrationScreen = () => {
                 </TouchableOpacity> 
                 {/* </View> */}
             </View>
-        </KeyboardAvoidingView> 
+                    </KeyboardAvoidingView> 
+                </ImageBackground>
+            </View>
         </TouchableWithoutFeedback>
     )
 };
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: "#fff",
+    }, 
+    imageBackground: {
+        flex: 1,
+        resizeMode: "cover",
+        justifyContent: "flex-end",
+    },
     form: {
         // position: 'relative',
         // flex: 0.75,
