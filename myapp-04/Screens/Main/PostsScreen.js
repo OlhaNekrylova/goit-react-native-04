@@ -1,5 +1,6 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { Feather } from '@expo/vector-icons';
 
 const PostsScreen = () => {
   return (
@@ -8,9 +9,7 @@ const PostsScreen = () => {
           style={ styles.loginLink }
           activeOpacity={0.5} 
         >
-          <Text style={ styles.loginLinkText }>
-            logout
-          </Text>
+          <Feather name="log-out" size={24} color="black" />
         </TouchableOpacity>     
         <Text>PostsScreen</Text>
     </View>

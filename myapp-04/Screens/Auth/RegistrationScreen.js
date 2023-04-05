@@ -14,7 +14,7 @@ const initialState = {
     password: "",
 };
 
-const RegistrationScreen = () => {
+const RegistrationScreen = ({ navigation }) => {
     const [state, setState] = useState(initialState);
     const [isShowKeyboard, setIsShowKeyboard] = useState(false);
 
@@ -22,7 +22,6 @@ const RegistrationScreen = () => {
         setIsShowKeyboard(false);
         Keyboard.dismiss();
         setstate(initialState);
-        navigation.navigate("Home")
     };
 
     const onSubmit = () => {

@@ -11,7 +11,7 @@ const initialState = {
     password: "",
 };
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }) => {
     const [state, setState] = useState(initialState);
     const [isShowKeyboard, setIsShowKeyboard] = useState(false);
 
