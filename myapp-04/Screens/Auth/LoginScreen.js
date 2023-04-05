@@ -13,15 +13,26 @@ const initialState = {
 
 const LoginScreen = () => {
     const [state, setState] = useState(initialState);
+    const [isShowKeyboard, setIsShowKeyboard] = useState(false);
 
     const keyboardHide = () => {
+        setIsShowKeyboard(false);
         Keyboard.dismiss();
+        setstate(initialState);
     };
 
-    const submitForm = () => {
-    console.log(state);
-    setState(initialState);
-    };
+    const onSubmit = () => {
+        // setIsShowKeyboard(false);
+        // Keyboard.dismiss();
+        console.log(state);
+        setstate(initialState);
+        navigation.navigate("Home");
+    }
+
+    // const submitForm = () => {
+    // console.log(state);
+    // setState(initialState);
+    // };
 
     const passwordShow =()=> alert(`Your password is: ${state.password}`);
 
@@ -30,39 +41,58 @@ const LoginScreen = () => {
             <View style={styles.container}>
                 <ImageBackground source={imageBackground} style={styles.imageBackground} >
                     <KeyboardAvoidingView 
-            behavior={Platform.OS === "ios" ? "padding" : "height"} 
-            // style={ styles.container } 
-        >
-            <View style={styles.form}>
-                    <Text style={ styles.title }>Login</Text>
-                    <TextInput 
-                        style={ styles.input }
-                        placeholder="Email address"
-                        inputMode="email"
-                        value={state.email} 
-                        onChangeText={(value) =>
-                            setState((prevState) => ({ ...prevState, email: value }))}
-                    />
-                    <TextInput 
-                        style={ styles.input }
-                        placeholder="Password" 
-                        secureTextEntry={true} 
-                        value={state.password}
-                        onChangeText={(value) =>
-                            setState((prevState) => ({ ...prevState, password: value }))}
-                    />
-                <TouchableOpacity style={ styles.pasShow } activeOpacity={0.5} onPress={passwordShow}>
-                    <Text style={ styles.passwShowText }>Show</Text>
-                </TouchableOpacity>  
+                        behavior={Platform.OS === "ios" ? "padding" : "height"} 
+                        // style={ styles.container } 
+                    >
+                        <View style={styles.form}>
+                            <Text style={ styles.title }>Login</Text>
+                            <TextInput 
+                                style={ styles.input }
+                                placeholder="Email address"
+                                inputMode="email"
+                                onFocus={() => setIsShowKeyboard(true)}
+                                value={state.email} 
+                                onChangeText={(value) =>
+                                setState((prevState) => ({ ...prevState, email: value }))}
+                            />
+                            <TextInput 
+                                style={ styles.input }
+                                placeholder="Password" 
+                                secureTextEntry={true} 
+                                onFocus={() => setIsShowKeyboard(true)}
+                                value={state.password}
+                                onChangeText={(value) =>
+                                setState((prevState) => ({ ...prevState, password: value }))}
+                            />
+                            <TouchableOpacity 
+                                onPress={passwordShow}
+                                style={ styles.pasShow } 
+                                activeOpacity={0.5} 
+                            >    
+                                <Text style={ styles.passwShowText }>Show</Text>
+                            </TouchableOpacity>  
 
-                <TouchableOpacity style={ styles.registerButton } activeOpacity={0.5} onPress={submitForm}>
-                    <Text style={ styles.registerText }>Login</Text>
-                </TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={onSubmit}
+                                style={ styles.registerButton }
+                                activeOpacity={0.5} 
+                            > 
+                                <Text style={ styles.registerText }>Login</Text>
+                            </TouchableOpacity>
 
-                <TouchableOpacity style={ styles.loginLink } activeOpacity={0.5} >
-                    <Text style={ styles.loginLinkText }>Don't have an account? Register</Text>
-                </TouchableOpacity> 
-                </View>
+                            <TouchableOpacity 
+                                onPress={() => navigation.navigate("Register")} 
+                                style={ styles.loginLink }
+                                activeOpacity={0.5} 
+                            >
+                                <Text style={ styles.loginLinkText }>
+                                    Don't have an account? 
+                                    <Text style={ styles.loginLinkText }>
+                                        Register
+                                    </Text>
+                                </Text>
+                            </TouchableOpacity> 
+                        </View>
                     </KeyboardAvoidingView>
                 </ImageBackground>
             </View>

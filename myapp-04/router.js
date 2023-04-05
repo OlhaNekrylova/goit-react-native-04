@@ -25,55 +25,62 @@ export const useRoute = (isAuth) => {
       <AuthStack.Navigator>
         <AuthStack.Screen
           options={{
-            headerShown: false,
+            headerShown: true,
           }}
           name="Login"
           component={LoginScreen}
         />
         <AuthStack.Screen
           options={{
-            headerShown: false,
+            headerShown:  true,
           }}
           name="Register"
-          component={RegisterScreen}
+          component={RegistrationScreen}
+        />
+        <AuthStack.Screen
+          options={{
+            headerShown: true,
+          }}
+          name="Home"
+          component={Home}
         />
       </AuthStack.Navigator>
     );
   }
   return (
-    <MainTab.Navigator tabBarOptions={{ showLabel: false }}>
+    <MainTab.Navigator tabBarOptions={{ showLabel: true }}>
       <MainTab.Screen
-        options={{
-          tabBarIcon: ({ focused, size, color }) => (
-            <MaterialCommunityIcons
-              name="postage-stamp"
-              size={size}
-              color={color}
-            />
-          ),
-        }}
+        // options={{
+        //   tabBarIcon: ({ focused, size, color }) => (
+        //     <MaterialCommunityIcons
+        //       name="postage-stamp"
+        //       size={size}
+        //       color={color}
+        //     />
+        //   ),
+        // }}
         name="Posts"
         component={PostsScreen}
       />
       <MainTab.Screen
-        options={{
-          tabBarIcon: ({ focused, size, color }) => (
-            <AntDesign name="pluscircleo" size={35} color={color} />
-          ),
-        }}
+        // options={{
+        //   tabBarIcon: ({ focused, size, color }) => (
+        //     <AntDesign name="pluscircleo" size={35} color={color} />
+        //   ),
+        // }}
         name="Create"
-        component={CreateScreen}
+        component={CreatePostsScreen}
       />
       <MainTab.Screen
-        options={{
-          tabBarIcon: ({ focused, size, color }) => (
-            <MaterialCommunityIcons
-              name="face-profile"
-              size={size}
-              color={color}
-            />
-          ),
-        }}
+        // options={{
+        //   tabBarIcon: ({ focused, size, color }) => (
+        //     <MaterialCommunityIcons
+        //       name="face-profile"
+        //       size={size}
+        //       color={color}
+        //     />
+        //   ),
+        // }}
         name="Profile"
         component={ProfileScreen}
       />
