@@ -18,21 +18,17 @@ const LoginScreen = ({ navigation }) => {
     const keyboardHide = () => {
         setIsShowKeyboard(false);
         Keyboard.dismiss();
-        setstate(initialState);
+        // setstate(initialState);
     };
 
     const onSubmit = () => {
+        if (!state.email || !state.password) { alert("Enter all data, please!"); return }
         // setIsShowKeyboard(false);
         // Keyboard.dismiss();
         console.log(state);
-        setstate(initialState);
-        navigation.navigate("Home");
+        // setstate(initialState);
+        navigation.navigate('Home', { screen: 'PostsScreen' });
     }
-
-    // const submitForm = () => {
-    // console.log(state);
-    // setState(initialState);
-    // };
 
     const passwordShow =()=> alert(`Your password is: ${state.password}`);
 
@@ -42,7 +38,6 @@ const LoginScreen = ({ navigation }) => {
                 <ImageBackground source={imageBackground} style={styles.imageBackground} >
                     <KeyboardAvoidingView 
                         behavior={Platform.OS === "ios" ? "padding" : "height"} 
-                        // style={ styles.container } 
                     >
                         <View style={styles.form}>
                             <Text style={ styles.title }>Login</Text>
@@ -81,7 +76,7 @@ const LoginScreen = ({ navigation }) => {
                             </TouchableOpacity>
 
                             <TouchableOpacity 
-                                onPress={() => navigation.navigate("Register")} 
+                                onPress={() => navigation.navigate("Registration")} 
                                 style={ styles.loginLink }
                                 activeOpacity={0.5} 
                             >
@@ -142,7 +137,6 @@ const styles = StyleSheet.create({
         textAlign: "center",
     },
     pasShow: {
-        // position: 'absolute',
         top: -34,
         left: 130,
     },
@@ -169,9 +163,6 @@ const styles = StyleSheet.create({
         color: "#ffffff",
         fontSize: 16,
         lineHeight: 19,
-    },
-    loginLink: {
-        // marginBottom: 45,
     },
     loginLinkText: {
         color: "#1B4371",

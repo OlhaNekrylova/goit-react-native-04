@@ -21,15 +21,16 @@ const RegistrationScreen = ({ navigation }) => {
     const keyboardHide = () => {
         setIsShowKeyboard(false);
         Keyboard.dismiss();
-        setstate(initialState);
+        // setstate(initialState);
     };
 
     const onSubmit = () => {
+        if (!state.login || !state.email || !state.password) { alert("Enter all data, please!"); return }
         // setIsShowKeyboard(false);
         // Keyboard.dismiss();
         console.log(state);
-        setstate(initialState);
-        navigation.navigate("Home");
+        // setstate(initialState);
+        navigation.navigate('Home', { screen: 'PostsScreen' });
     }
 
     const passwordShow =()=> alert(`Your password is: ${state.password}`);
@@ -40,7 +41,6 @@ const RegistrationScreen = ({ navigation }) => {
                 <ImageBackground source={imageBackground} style={styles.imageBackground} >
                     <KeyboardAvoidingView 
                         behavior={Platform.OS == "ios" ? "padding" : "height"} 
-                        // style={ styles.container } 
                     >
                         <View style={{...styles.form,
                             bottom: isShowKeyboard ? -180 : 0, }}>
@@ -50,7 +50,6 @@ const RegistrationScreen = ({ navigation }) => {
                                     <ImageBackground source={buttonImg} style={{width: '100%', height: '100%'}}></ImageBackground>
                                 </TouchableOpacity>
                             </View>
-                            {/* <View style={styles.form}> */}
                             <Text style={ {...styles.title,
                                 top: isShowKeyboard ? -190 : 0, } }>Registration</Text>
                             <TextInput 
@@ -97,7 +96,7 @@ const RegistrationScreen = ({ navigation }) => {
                             </TouchableOpacity>  
 
                             <TouchableOpacity
-                                onPress={onSubmi}
+                                onPress={onSubmit}
                                 style={{...styles.registerButton,
                                 marginTop: isShowKeyboard ? 5 : 43, }} 
                                 activeOpacity={0.5} 
@@ -118,7 +117,6 @@ const RegistrationScreen = ({ navigation }) => {
                                     </Text>
                                 </Text>
                             </TouchableOpacity> 
-                            {/* </View> */}
                         </View>
                     </KeyboardAvoidingView> 
                 </ImageBackground>
@@ -138,10 +136,7 @@ const styles = StyleSheet.create({
         justifyContent: "flex-end",
     },
     form: {
-        // position: 'relative',
-        // flex: 0.75,
         alignItems: "center",
-        // justifyContent: "flex-end",
         width: 360,
         height: 549,
         borderTopLeftRadius: 25,
@@ -151,13 +146,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#ffffff",
     },
     pfotoContainer: {
-    //  position: "absolute",
-    //  alignSelf: "center",
-        // top: -60,
-        // alignItems: 'center',
         zIndex: 1,
-        // left: 128,
-        // top: 203,
         width: 120,
         height: 120,
         borderRadius: 16,
@@ -167,8 +156,6 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 15,
         right: -12,
-        // left: 100,
-        // top: 284,
         zIndex: 2,
         width: 25,
         height: 25,
@@ -184,7 +171,6 @@ const styles = StyleSheet.create({
         position: 'relative',
         width: 343,
         height: 50,
-        // marginTop: 16,
         borderWidth: 1,
         borderRadius: 8,
         borderColor: "#E8E8E8",
@@ -195,8 +181,6 @@ const styles = StyleSheet.create({
         textAlign: "center",
     },
     pasShow: {
-        // position: 'absolute',
-        // top: -34,
         left: 130,
     },
     passwShowText: {
@@ -209,7 +193,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
         width: 343,
         height: 51,
-        // marginTop: 43,
         marginBottom: 16,
         borderRadius: 100,
         backgroundColor: "#FF6C00",
@@ -222,9 +205,6 @@ const styles = StyleSheet.create({
         color: "#ffffff",
         fontSize: 16,
         lineHeight: 19,
-    },
-    loginLink: {
-        // marginBottom: 45,
     },
     loginLinkText: {
         color: "#1B4371",
